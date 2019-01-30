@@ -12,12 +12,16 @@ const AppContainer = styled.div`
   font-size: calc(10px + 2vmin);
   color: white;
   text-align:center;
-  padding: 50px 80px;
+  padding: 0px 80px;
+
+  @media(max-width:500px){
+    padding: 0 20px;
+  }
 `;
 
 const Button = styled.button`
   color: tomato;
-  font-size: 20px;
+  font-size: calc(5px + 2vmin);
   margin: 1em auto;
   padding: 0.25em 1em;
   border: 2px solid tomato;
@@ -27,17 +31,16 @@ const Button = styled.button`
   position: absolute;
   bottom: 0;
 
-  :hover{
+  :hover {
     color: #000;
     background: tomato;
   }
-
 `;
 
 const Paragraph = styled.p`
   color: tomato;
   font-style: italic;
-  font-size: 1em;
+  font-size: 1.1em;
   
   &::before{
     content: '❝';
@@ -55,8 +58,8 @@ const Paragraph = styled.p`
 `;
 
 const Span = styled.span`
-  text-transform:uppercase;
-  font-size:15px;
+  text-transform: uppercase;
+  font-size: calc(5px + 2vmin);
 `;
 
 class App extends Component {
