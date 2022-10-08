@@ -1,9 +1,15 @@
+// Core
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'typeface-roboto-slab';
+
+// CSS
 import './index.css';
+
+// Components
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import 'typeface-roboto-slab';
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
