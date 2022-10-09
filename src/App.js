@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import './App.css';
 
@@ -62,51 +62,35 @@ const Span = styled.span`
   font-size: calc(5px + 2vmin);
 `;
 
-class App extends Component {
-  state = {
-    isLoading: false,
-    randomQuotes: []
-  }
+export default function App(){
+  const [isLoading, setIsLoading] = useState(false);
+  const [randomQuotes, setRandomQuotes] = useState({});
 
-  componentDidMount(){
-    this.setState({
-      isLoading: true
-    })
+  const handleClick = () => {
+    setIsLoading(true);
     fetch('https://thesimpsonsquoteapi.glitch.me/quotes')
       .then((response)=> response.json())
       .then(data => {
-        this.setState({
-          isLoading: false,
-          randomQuotes: data[0],
-        })
-    })
+        setRandomQuotes(data[0]);
+        setIsLoading(false);
+    });
   }
 
-  handleClick =() => {
-    fetch('https://thesimpsonsquoteapi.glitch.me/quotes')
-      .then((response)=> response.json())
-      .then(data => {
-        console.log(data[0]);
-        this.setState({
-          randomQuotes: data[0]
-        })
-    })
-  }
+  useEffect(() => {
+    handleClick();
+  }, []);
 
-  render() {
-   const{quote, character} = this.state.randomQuotes;
-    return (
-      <AppContainer>
-        {this.state.isLoading === false && 
-          <React.Fragment>
-            <Paragraph>{quote}</Paragraph>
-            <Span> - {character} - </Span>
-            <Button onClick={this.handleClick}>Get A New Quote!</Button>
-          </React.Fragment>
-        }
-      </AppContainer>
-    );
-  }
-}
+  const { quote, character } = randomQuotes;
 
-export default App;
+  return (
+    <AppContainer>
+      {isLoading === false && 
+        <>
+          <Paragraph>{quote}</Paragraph>
+          <Span> - {character} - </Span>
+          <Button onClick={handleClick}>Get A New Quote!</Button>
+        </>
+      }
+    </AppContainer>
+  );
+};
