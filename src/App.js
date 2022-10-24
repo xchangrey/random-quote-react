@@ -84,13 +84,13 @@ export default function App(){
 
   return (
     <AppContainer>
-      {isLoading === false && 
+      {isLoading === false &&
         <>
           <Paragraph>{quote}</Paragraph>
           <Span> - {character} - </Span>
-          <Button onClick={handleClick}>Get A New Quote!</Button>
         </>
       }
+      <Button onClick={handleClick}>Get A New Quote!</Button>
     </AppContainer>
   );
 };
