@@ -8,7 +8,6 @@ import './index.css';
 
 // Components
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
 const root = createRoot(document.getElementById('root'));
 
